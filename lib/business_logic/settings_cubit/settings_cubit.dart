@@ -210,6 +210,7 @@ class SettingsCubit extends Cubit<SettingsStates> {
         .collection('messages')
         .add(messageModel.toMap())
         .then((value) {
+          print(value.id);
       emit(SendMessageSuccessState());
     }).catchError((error) {
       print(error);
@@ -245,7 +246,10 @@ class SettingsCubit extends Cubit<SettingsStates> {
           messages = [];
           event.docs.forEach((element) {
             messages.add(MessageModel.fromJson(element.data()));
+
           });
+
     });
+    emit(GetMessageSuccessState());
   }
 }
